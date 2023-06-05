@@ -1,53 +1,42 @@
-import java.util.* ;
-import java.io.*; 
-import java.util.ArrayList;
-import java.util.Collections;
+/****************************************************************
 
-public class Solution 
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+ *****************************************************************/
+
+public class Solution
 {
-	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> nums) 
-	{
-		// Write your code here.
-		
-		int first_max=0,second_max=0;
-        int i,j,n=nums.size();
-        int index=-1;
-        for(i=n-2;i>=0;i--)
-        {
-            if(nums.get(i)<nums.get(i+1))
-            {
-                index=i;
-                break;
-            }
-        }
-        if(index==-1)
-            Collections.sort(nums);
-        else
-        {
-            for(i=n-1;i>index;i--)
-            {
-                if(nums.get(i)>nums.get(index))
-                {
-                    swap(nums,i,index);
-                    break;
-                }
-            }
-            int x=index+1,y=n-1;
-            while(x<y)
-            {
-                swap(nums,x,y);
-                x++;
-                y--;
-            }
-        }
-		return nums;
-	}
-	public static void swap(ArrayList<Integer> nums,int i,int j)
+    public static Node findMiddle(Node head)
     {
-        int temp=nums.get(i);
-		int temp2=nums.get(j);
-        nums.set(i,temp2);
-		nums.set(j,temp);
+        // Write your code here.
+        if(head==null || head.next==null) return head;
+        Node fast=head,slow=head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
-   
 }
