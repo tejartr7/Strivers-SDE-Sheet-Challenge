@@ -35,10 +35,15 @@ public class Solution {
 		// Write your code here.
 		list = new ArrayList<>();
 		inorder(root);
-		for (int x : list) {
-			if (list.contains(k - x) && k - x != x) {
+		int i = 0, j = list.size() - 1;
+		while (i < j) {
+			int sum = list.get(i) + list.get(j);
+			if (sum == k)
 				return true;
-			}
+			else if (sum < k)
+				i++;
+			else
+				j--;
 		}
 		return false;
 	}
