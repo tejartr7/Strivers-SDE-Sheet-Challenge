@@ -29,7 +29,6 @@ public class Solution {
             for (j = 0; j < b; j++) {
                 if (a[i][j] == 0) {
                     make(matrix, i, j);
-
                 }
             }
         }
@@ -37,7 +36,25 @@ public class Solution {
 
     public static void setZeros(int matrix[][]) {
         // Write your code here..
-        setZero(matrix);
+        HashSet<Integer> r = new HashSet<>();
+        HashSet<Integer> c = new HashSet<>();
+        int i, j, m = matrix.length, n = matrix[0].length;
+        for (i = 0; i < m; i++) {
+            for (j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    r.add(i);
+                    c.add(j);
+                }
+            }
+        }
+        for (int x : r) {
+            Arrays.fill(matrix[x], 0);
+        }
+        for (int x : c) {
+            for (i = 0; i < m; i++) {
+                matrix[i][x] = 0;
+            }
+        }
     }
 
 }
